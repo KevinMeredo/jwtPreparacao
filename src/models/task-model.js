@@ -3,7 +3,8 @@ const { Model, DataTypes } = require("sequelize");
 class TaskModel extends Model {
     static init(database) {
         super.init({
-            crn: DataTypes.TEXT,
+            descricao: DataTypes.TEXT,
+            dataPrevistaTermino: DataTypes.DATE,
         }, {
             tableName: 'task',
             modelName: 'Task',
@@ -14,6 +15,8 @@ class TaskModel extends Model {
 
     static associate(models) {
         this.belongsTo(models.User, { foreignKey: 'userId' });
+        this.hasOne(models.TaskSpecification, { foreignKey: 'taskId' });
+        this.belongsToMany(models.User, {through: UserTasks})
     }
 }
 
