@@ -10,11 +10,11 @@ module.exports = {
                 allowNull: false,
                 primaryKey: true
             },
-            nome: {
+            name: {
                 type: Sequelize.TEXT,
                 allowNull: false,
             },
-            senha: {
+            password: {
                 type: Sequelize.TEXT,
                 allowNull: false,
             }

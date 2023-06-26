@@ -3,24 +3,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('taskSpecification', {
+        await queryInterface.createTable('entregador', {
             id: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
             },
-            taskId: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-                references: { model: 'task', key: 'id' },
-                onDelete: 'CASCADE',
-                onUpdate: 'CASCADE'
-            }
+            nome: Sequelize.TEXT,
+            cnh: Sequelize.TEXT,
+            data: Sequelize.TEXT,
+            hora: Sequelize.TEXT
         });
     },
 
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('taskSpecification');
+        await queryInterface.dropTable('entregador');
     }
 };

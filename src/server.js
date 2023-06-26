@@ -9,5 +9,5 @@ server.use(express.json());
 server.use(routes);
 
 server.listen(8080, () => {
-    console.log('🚀 Server started!');
+    console.log('🚀 Server 8080 started!');
 });

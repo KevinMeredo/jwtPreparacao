@@ -3,26 +3,26 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('task', {
+        await queryInterface.createTable('estoqueDiario', {
             id: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
             },
-            userId: {
+            entregadorId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                references: { model: 'users', key: 'id' },
+                references: { model: 'entregador', key: 'id' },
                 onDelete: 'CASCADE',
                 onUpdate: 'CASCADE'
             },
-            descricao: Sequelize.TEXT,
-            dataPrevistaTermino: Sequelize.DATE,
+            data: Sequelize.TEXT,
+            qtdeitens: Sequelize.INTEGER,
         });
     },
 
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('task');
+        await queryInterface.dropTable('estoqueDiario');
     }
 };

@@ -10,22 +10,22 @@ const { TOKEN_SECRET, SALT } = require('../../ambiente');
 class SignupUserController {
     async signup(request, response) {
         try {
-            const { nome, senha } = request.body;
+            const { name, password } = request.body;
 
             // Validar parâmetros
-            if (!nome || !senha) {
+            if (!name || !password) {
                 return response.status(400).json({
                     error: 'Nome e senha são obrigatórios!'
                 });
             }
 
             // Criptografa senha
-            const passwordHashed = await bcrypt.hash(senha, SALT);
+            const passwordHashed = await bcrypt.hash(password, SALT);
 
             // Cria usuário
             const user = await UserModel.create({
-                nome,
-                senha: passwordHashed,
+                name: name,
+                password: passwordHashed,
             });
 
             if (!user) {

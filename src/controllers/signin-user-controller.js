@@ -10,10 +10,10 @@ const { TOKEN_SECRET } = require('../../ambiente');
 class SigninUserController {
     async signin(request, response) {
         try {
-            const { nome, senha } = request.body;
+            const { name, password } = request.body;
 
             // Validar parâmetros
-            if (!nome || !senha) {
+            if (!name || !password) {
                 return response.status(400).json({
                     error: 'Nome e senha são obrigatórios!'
                 });
@@ -21,7 +21,7 @@ class SigninUserController {
 
             // Verifica se usuário existe
             const userExists = await UserModel.findOne({
-                where: { nome }
+                where: { name }
             });
 
             if (!userExists) {
@@ -31,7 +31,7 @@ class SigninUserController {
             }
 
             // Verifica se a senha está correta
-            const isPasswordValid = await bcrypt.compare(senha, userExists.senha);
+            const isPasswordValid = await bcrypt.compare(password, userExists.password);
 
             if (!isPasswordValid) {
                 return response.status(400).json({
